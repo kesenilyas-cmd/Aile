@@ -5,51 +5,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ailem</title>
 <style>
-  :root{
-    --zemin:#e9f1f5; --kart:#ffffff; --yazi:#12303d; --yumusak:#4a6572;
-    --vurgu:#1f6f8b; --cizgi:#c5d8e1;
-  }
+  :root{--zemin:#e9f1f5;--kart:#fff;--yazi:#12303d;--yumusak:#4a6572;--vurgu:#1f6f8b;--cizgi:#c5d8e1;--tehlike:#b3261e}
   @media (prefers-color-scheme: dark){
-    :root{ --zemin:#10222b; --kart:#183440; --yazi:#f2f8fa; --yumusak:#b4cbd5; --vurgu:#7cc4de; --cizgi:#2c5463; }
+    :root{--zemin:#10222b;--kart:#183440;--yazi:#f2f8fa;--yumusak:#b4cbd5;--vurgu:#7cc4de;--cizgi:#2c5463;--tehlike:#ff9b93}
   }
   *{box-sizing:border-box}
   html,body{margin:0}
-  body{
-    background:var(--zemin); color:var(--yazi);
-    font-family:Verdana, "Trebuchet MS", system-ui, sans-serif;
-    padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
-  }
+  body{background:var(--zemin);color:var(--yazi);font-family:Verdana,"Trebuchet MS",system-ui,sans-serif;
+    padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
   header{padding:22px 20px 8px}
   h1{margin:0;font-size:1.9rem;line-height:1.2}
   header p{margin:6px 0 0;color:var(--yumusak);font-size:1.1rem}
-  main{display:flex;flex-direction:column;gap:16px;padding:16px 16px 40px;max-width:640px;margin:0 auto}
-  .kisi{
-    display:flex;align-items:center;gap:18px;width:100%;
-    background:var(--kart);border:2px solid var(--cizgi);border-radius:22px;
-    padding:16px;text-align:left;font:inherit;color:inherit;cursor:pointer;
-  }
-  .kisi:focus-visible{outline:4px solid var(--vurgu);outline-offset:3px}
-  .foto{
-    flex:none;width:116px;height:116px;border-radius:50%;object-fit:cover;
-    background:var(--vurgu);color:#fff;display:flex;align-items:center;justify-content:center;
-    font-size:2.8rem;font-weight:700;overflow:hidden;
-  }
+  main{display:flex;flex-direction:column;gap:16px;padding:16px 16px 24px;max-width:640px;margin:0 auto}
+  .satir{display:flex;flex-direction:column;gap:8px}
+  .kisi{display:flex;align-items:center;gap:18px;width:100%;background:var(--kart);border:2px solid var(--cizgi);
+    border-radius:22px;padding:16px;text-align:left;font:inherit;color:inherit;cursor:pointer}
+  button:focus-visible,input:focus-visible{outline:4px solid var(--vurgu);outline-offset:3px}
+  .foto{flex:none;width:116px;height:116px;border-radius:50%;background:var(--vurgu);color:#fff;display:flex;
+    align-items:center;justify-content:center;font-size:2.8rem;font-weight:700;overflow:hidden}
   .foto img{width:100%;height:100%;object-fit:cover;display:block}
   .ad{font-size:1.9rem;font-weight:700;line-height:1.15;overflow-wrap:anywhere}
   .yakin{font-size:1.4rem;color:var(--vurgu);margin-top:6px;font-weight:600}
-  dialog{
-    border:none;border-radius:26px;padding:28px 22px;width:min(92vw,520px);
-    background:var(--kart);color:var(--yazi);text-align:center;
-  }
+  .bos{font-size:1.3rem;color:var(--yumusak);padding:20px 4px;line-height:1.5}
+  .araclar{display:flex;gap:10px}
+  .arac{flex:1;font:inherit;font-size:1.1rem;padding:12px;border-radius:14px;border:2px solid var(--cizgi);
+    background:var(--kart);color:var(--yazi);cursor:pointer}
+  .arac.sil{color:var(--tehlike)}
+  .btn{font:inherit;font-size:1.3rem;padding:14px 30px;border-radius:999px;border:none;background:var(--vurgu);color:#fff;cursor:pointer}
+  .btn.ikinci{background:transparent;color:var(--yazi);border:2px solid var(--cizgi)}
+  @media (prefers-color-scheme: dark){.btn:not(.ikinci){color:#10222b;font-weight:700}}
+  .alt{max-width:640px;margin:0 auto;padding:0 16px 40px;display:flex;flex-direction:column;gap:12px}
+  .alt .btn{width:100%}
+  .duzenle-link{align-self:center;background:none;border:none;font:inherit;font-size:1rem;color:var(--yumusak);
+    text-decoration:underline;padding:12px;cursor:pointer}
+  dialog{border:none;border-radius:26px;padding:26px 22px;width:min(92vw,520px);background:var(--kart);color:var(--yazi);text-align:center}
   dialog::backdrop{background:rgba(8,20,26,.75)}
-  dialog .foto{width:min(70vw,280px);height:min(70vw,280px);margin:0 auto 18px;font-size:6rem}
-  dialog .ad{font-size:2.4rem}
-  dialog .yakin{font-size:1.8rem}
-  dialog button{
-    margin-top:24px;font:inherit;font-size:1.3rem;padding:14px 34px;border-radius:999px;
-    border:none;background:var(--vurgu);color:#fff;cursor:pointer;
-  }
-  @media (prefers-color-scheme: dark){ dialog button{color:#10222b;font-weight:700} }
+  #icerik .foto{width:min(70vw,280px);height:min(70vw,280px);margin:0 auto 18px;font-size:6rem}
+  #icerik .ad{font-size:2.4rem}
+  #icerik .yakin{font-size:1.8rem}
+  #buyuk .btn{margin-top:24px}
+  form{display:flex;flex-direction:column;gap:14px;text-align:left}
+  form h2{margin:0 0 4px;font-size:1.5rem}
+  label{font-size:1.1rem;font-weight:700;display:flex;flex-direction:column;gap:6px}
+  input[type=text],input[type=file]{font:inherit;font-size:1.2rem;padding:12px;border-radius:12px;border:2px solid var(--cizgi);
+    background:var(--zemin);color:var(--yazi);width:100%}
+  .onizle{width:96px;height:96px}
+  .form-alt{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+  .form-alt .btn{padding:12px 22px;font-size:1.15rem}
+  .hata{color:var(--tehlike);font-size:1rem;min-height:1.2em;margin:0}
 </style>
 </head>
 <body>
@@ -58,61 +61,150 @@
   <p>Evde yanında olan insanlar</p>
 </header>
 <main id="liste"></main>
+<div class="alt" id="alt"></div>
 
-<dialog id="buyuk">
-  <div id="icerik"></div>
-  <button id="kapat" type="button">Kapat</button>
+<dialog id="buyuk"><div id="icerik"></div><button class="btn" id="kapat" type="button">Kapat</button></dialog>
+
+<dialog id="formKutu">
+  <form id="form">
+    <h2 id="formBaslik">Kişi ekle</h2>
+    <label>Adı <input type="text" id="fAd" required maxlength="40" autocomplete="off"></label>
+    <label>Yakınlığı <input type="text" id="fYakin" required maxlength="40" autocomplete="off" placeholder="Örnek: Senin kızın"></label>
+    <label>Fotoğraf <input type="file" id="fFoto" accept="image/*"></label>
+    <div class="foto onizle" id="onizle"></div>
+    <p class="hata" id="hata"></p>
+    <div class="form-alt">
+      <button type="button" class="btn ikinci" id="vazgec">Vazgeç</button>
+      <button type="submit" class="btn">Kaydet</button>
+    </div>
+  </form>
 </dialog>
 
 <script>
-/* ============ BURAYI KENDİNİZE GÖRE DÜZENLEYİN ============
-   ad      : kişinin adı
-   yakinlik: kayınvalidenizin gözünden yazın ("Senin kızın" gibi)
-   foto    : fotograflar/ klasörüne yüklediğiniz dosyanın adı
-             (foto yoksa baş harfi gösterilir)
-=============================================================== */
-const KISILER = [
-  { ad: "Ayşe", yakinlik: "Senin kızın",     foto: "fotograflar/ayse.jpg" },
-  { ad: "Mehmet", yakinlik: "Senin damadın", foto: "fotograflar/mehmet.jpg" },
-  { ad: "Elif", yakinlik: "Senin torunun",   foto: "fotograflar/elif.jpg" }
-];
+const ANAHTAR = "ailem.kisiler", PIN_ANAHTAR = "ailem.pin";
+let kisiler = [], duzen = false, duzenlenen = -1, yeniFoto = null;
 
-const liste = document.getElementById("liste");
-const buyuk = document.getElementById("buyuk");
-const icerik = document.getElementById("icerik");
+function yukle(){ try{ kisiler = JSON.parse(localStorage.getItem(ANAHTAR)) || []; }catch(e){ kisiler = []; } }
+function kaydet(){
+  try{ localStorage.setItem(ANAHTAR, JSON.stringify(kisiler)); return true; }
+  catch(e){ alert("Kaydedilemedi, telefonda yer kalmamış olabilir."); return false; }
+}
+const $ = id => document.getElementById(id);
 
 function fotoKutusu(k){
-  const d = document.createElement("div");
-  d.className = "foto";
-  d.textContent = k.ad.trim().charAt(0).toLocaleUpperCase("tr");
-  if (k.foto){
-    const img = new Image();
-    img.alt = k.ad;
-    img.onload = () => { d.textContent = ""; d.appendChild(img); };
-    img.src = k.foto;
-  }
+  const d = document.createElement("div"); d.className = "foto";
+  if (k.foto){ const i = new Image(); i.alt = k.ad; i.src = k.foto; d.appendChild(i); }
+  else d.textContent = k.ad.trim().charAt(0).toLocaleUpperCase("tr");
   return d;
 }
 function metin(k){
   const m = document.createElement("div");
   const a = document.createElement("div"); a.className = "ad"; a.textContent = k.ad;
   const y = document.createElement("div"); y.className = "yakin"; y.textContent = k.yakinlik;
-  m.append(a, y);
-  return m;
+  m.append(a, y); return m;
+}
+function dugme(yazi, sinif, fn){
+  const b = document.createElement("button"); b.type = "button"; b.className = sinif; b.textContent = yazi;
+  b.addEventListener("click", fn); return b;
 }
 
-KISILER.forEach(k => {
-  const b = document.createElement("button");
-  b.type = "button"; b.className = "kisi";
-  b.append(fotoKutusu(k), metin(k));
-  b.addEventListener("click", () => {
-    icerik.replaceChildren(fotoKutusu(k), metin(k));
-    buyuk.showModal();
+function ciz(){
+  const liste = $("liste"); liste.replaceChildren();
+  if (!kisiler.length){
+    const p = document.createElement("p"); p.className = "bos";
+    p.textContent = "Henüz kimse eklenmedi. Aşağıdaki Düzenle bağlantısından kişi ekleyebilirsiniz.";
+    liste.appendChild(p);
+  }
+  kisiler.forEach((k, i) => {
+    const s = document.createElement("div"); s.className = "satir";
+    const b = document.createElement("button"); b.type = "button"; b.className = "kisi";
+    b.append(fotoKutusu(k), metin(k));
+    b.addEventListener("click", () => { $("icerik").replaceChildren(fotoKutusu(k), metin(k)); $("buyuk").showModal(); });
+    s.appendChild(b);
+    if (duzen){
+      const a = document.createElement("div"); a.className = "araclar";
+      a.append(
+        dugme("Değiştir", "arac", () => formAc(i)),
+        dugme("Yukarı", "arac", () => tasi(i, -1)),
+        dugme("Aşağı", "arac", () => tasi(i, 1)),
+        dugme("Sil", "arac sil", () => { if (confirm(k.ad + " silinsin mi?")){ kisiler.splice(i,1); kaydet(); ciz(); } })
+      );
+      s.appendChild(a);
+    }
+    liste.appendChild(s);
   });
-  liste.appendChild(b);
+  const alt = $("alt"); alt.replaceChildren();
+  if (duzen){
+    alt.append(dugme("Kişi ekle", "btn", () => formAc(-1)), dugme("Düzenlemeyi bitir", "btn ikinci", () => { duzen = false; ciz(); }));
+  } else {
+    alt.append(dugme("Düzenle", "duzenle-link", pinIste));
+  }
+}
+function tasi(i, yon){
+  const j = i + yon; if (j < 0 || j >= kisiler.length) return;
+  [kisiler[i], kisiler[j]] = [kisiler[j], kisiler[i]]; kaydet(); ciz();
+}
+
+/* Düzenleme PIN'i: ilk seferde kendiniz belirlersiniz */
+function pinIste(){
+  let pin = localStorage.getItem(PIN_ANAHTAR);
+  if (!pin){
+    const yeni = prompt("Düzenleme için 4 haneli bir şifre belirleyin (sadece siz bilin):");
+    if (!yeni) return;
+    if (!/^\d{4}$/.test(yeni)){ alert("Şifre 4 rakamdan oluşmalı."); return; }
+    localStorage.setItem(PIN_ANAHTAR, yeni); duzen = true; ciz(); return;
+  }
+  const g = prompt("Düzenleme şifresi:");
+  if (g === pin){ duzen = true; ciz(); } else if (g !== null) alert("Şifre yanlış.");
+}
+
+/* Form */
+function formAc(i){
+  duzenlenen = i; yeniFoto = null; $("hata").textContent = ""; $("fFoto").value = "";
+  const k = i >= 0 ? kisiler[i] : { ad:"", yakinlik:"", foto:"" };
+  $("formBaslik").textContent = i >= 0 ? "Kişiyi değiştir" : "Kişi ekle";
+  $("fAd").value = k.ad; $("fYakin").value = k.yakinlik;
+  onizleCiz(k.foto, k.ad);
+  $("formKutu").showModal();
+}
+function onizleCiz(foto, ad){
+  const o = $("onizle"); o.replaceChildren(); o.textContent = "";
+  if (foto){ const im = new Image(); im.src = foto; o.appendChild(im); }
+  else o.textContent = (ad || "?").trim().charAt(0).toLocaleUpperCase("tr") || "?";
+}
+function kucult(dosya){
+  return new Promise((coz, red) => {
+    const url = URL.createObjectURL(dosya), im = new Image();
+    im.onload = () => {
+      const boy = 400, oran = Math.min(1, boy / Math.max(im.width, im.height));
+      const c = document.createElement("canvas");
+      c.width = Math.round(im.width * oran); c.height = Math.round(im.height * oran);
+      c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url); coz(c.toDataURL("image/jpeg", 0.82));
+    };
+    im.onerror = () => { URL.revokeObjectURL(url); red(); };
+    im.src = url;
+  });
+}
+$("fFoto").addEventListener("change", async e => {
+  const d = e.target.files[0]; if (!d) return;
+  try{ yeniFoto = await kucult(d); onizleCiz(yeniFoto, $("fAd").value); $("hata").textContent = ""; }
+  catch(_){ $("hata").textContent = "Bu fotoğraf açılamadı, başka bir tane deneyin."; }
 });
-document.getElementById("kapat").addEventListener("click", () => buyuk.close());
-buyuk.addEventListener("click", e => { if (e.target === buyuk) buyuk.close(); });
+$("vazgec").addEventListener("click", () => $("formKutu").close());
+$("form").addEventListener("submit", e => {
+  e.preventDefault();
+  const eski = duzenlenen >= 0 ? kisiler[duzenlenen] : null;
+  const k = { ad: $("fAd").value.trim(), yakinlik: $("fYakin").value.trim(), foto: yeniFoto || (eski ? eski.foto : "") };
+  if (!k.ad || !k.yakinlik) return;
+  if (duzenlenen >= 0) kisiler[duzenlenen] = k; else kisiler.push(k);
+  if (kaydet()){ $("formKutu").close(); ciz(); }
+});
+$("kapat").addEventListener("click", () => $("buyuk").close());
+$("buyuk").addEventListener("click", e => { if (e.target === $("buyuk")) $("buyuk").close(); });
+
+yukle(); ciz();
+if (navigator.storage && navigator.storage.persist) navigator.storage.persist();
 </script>
 </body>
 </html>
